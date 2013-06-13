@@ -1,31 +1,30 @@
 $(document).ready(function() {
   fetchData();
-  setInterval(clearData, 8500);
 });
 
-function clearData() {
-  $($(".tweet span").get().reverse()).each(function(i) { 
-    $(this).delay(13 * i).fadeOut(750, function() { 
-      $(this).remove();
-      if($(".tweet span").length == 0) {
-        fetchData();
-      }
-    });
-  });
-}
-
 function fetchData() {
-  $.getJSON('/data', function(data) {
-    fadeInData(data.d);
-  });
-}
-
-function fadeInData(data) {
-  $('.tweet').fadeOut(1).delay(1000).html("").fadeIn(1, function() {
-    var spans = '<span>' + data.split(' ').join('</span> <span>') + '</span>';
-    $(spans).hide().appendTo('.tweet').each(function(i) {
-      $(this).delay(10 * i).fadeIn(350);
-    });
+  var cws;
+  
+  $.ajax({
+    url: '/data',
+    async: false,
+    dataType: 'json',
+    success: function (json) {
+      cws = json;
+    }
   });
   
+  var count = 0;
+  var timer = setInterval(function(){
+    $(".text .title").text(cws[count]["title"]);
+    $(".text .description").text(cws[count]["description"]);
+    if(cws[count]["thumbnail"]) {
+      $(".img img").attr('src', cws[count]["thumbnail"]["@id"]);
+    }
+    count++
+    if (count === cws.length) {
+      clearInterval(timer);
+      fetchData();
+    }
+  }, 5000);
 }
