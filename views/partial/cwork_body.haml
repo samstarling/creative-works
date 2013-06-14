@@ -1,0 +1,5 @@
+%h3= cwork.title
+%p= cwork.description
+- if cwork.about
+  - cwork.about.each do |about|
+    %a.about{:href => "#"}= about

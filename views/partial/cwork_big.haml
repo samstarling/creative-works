@@ -1,0 +1,8 @@
+%div.row.clearfix
+  %div.six.columns.alpha
+    - if cwork.thumbnail
+      %img.thumbnail{:src => cwork.thumbnail}
+    - else
+      &nbsp;
+  %div.ten.columns.omega
+    = partial("partial/cwork_body", :locals => {cwork: cwork})

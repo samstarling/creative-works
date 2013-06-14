@@ -1,0 +1,37 @@
+body {
+  margin-bottom: 50px;
+}
+
+h1, h2, h3, h4 {
+  font-family: 'Roboto Condensed';
+}
+
+header {
+  background: #666;
+  margin-bottom: 50px;
+}
+
+header h1 {
+  margin: 0 0 0 -5px;
+  padding: 0 5px;
+  color: #fff;
+  font-size: 2em;
+  line-height: 2em;
+}
+
+.thumbnail {
+  width: 100%;
+  border-radius: 3px;
+}
+
+a.about {
+  border-radius: 3px;
+  padding: 2px 8px;
+  float: left;
+  margin-right: 5px;
+  background: #eee;
+}
+
+.cwork .text p {
+  margin-bottom: 0.5em;
+}

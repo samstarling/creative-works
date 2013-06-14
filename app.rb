@@ -1,11 +1,17 @@
 require 'rubygems'
 require 'sinatra'
 require 'json'
+require 'sinatra/partial'
 
 require_relative 'lib/creative_work_client.rb'
 
-get '/' do
+get '/old' do
   haml :index
+end
+
+get '/' do
+  @cworks = CreativeWorkClient.latest
+  haml :list
 end
 
 get '/data' do
