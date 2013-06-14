@@ -2,7 +2,7 @@ require 'rest_client'
 require 'json'
 require 'retriable'
 
-RestClient.proxy = "http://www-cache.reith.bbc.co.uk:80"
+#RestClient.proxy = "http://www-cache.reith.bbc.co.uk:80"
 
 MASHERY_KEY = ENV["MASHERY_KEY"]
 MASHERY_BASE = "http://bbc.api.mashery.com/ldp"
@@ -123,10 +123,6 @@ end
 
 class BBCRestClient
   def self.get url
-    RestClient::Resource.new(
-      url,
-      :ssl_client_cert => OpenSSL::X509::Certificate.new(File.open(File.join(File.dirname(__FILE__), '..', 'certificate.pem'))),
-      :ssl_client_key => OpenSSL::PKey::RSA.new(File.open(File.join(File.dirname(__FILE__), '..', 'certificate.pem'))),
-    ).get(:accept => "application/json-ld")
+    RestClient::Resource.new(url).get(:accept => "application/json-ld")
   end
 end
