@@ -1,9 +1,9 @@
 - if big
   %h2
-    %a{:href => "#"}= cwork.title
+    %a{:href => cwork.href}= cwork.title
 - else
   %h3
-    %a{:href => "#"}= cwork.title
+    %a{:href => cwork.href}= cwork.title
 %h5.date
   = cwork.date
 %p= cwork.description

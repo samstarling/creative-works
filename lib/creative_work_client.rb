@@ -2,7 +2,7 @@ require 'rest_client'
 require 'json'
 require 'retriable'
 
-#RestClient.proxy = "http://www-cache.reith.bbc.co.uk:80"
+RestClient.proxy = "http://www-cache.reith.bbc.co.uk:80"
 
 MASHERY_KEY = ENV["MASHERY_KEY"]
 MASHERY_BASE = "http://bbc.api.mashery.com/ldp"
@@ -18,7 +18,8 @@ end
 class CreativeWorkClient
   def self.latest
     retriable :tries => 5, :interval => 1 do
-      response = BBCRestClient.get "#{MASHERY_BASE}/creative-works?legacy=true&api_key=#{MASHERY_KEY}"
+      url = "#{MASHERY_BASE}/creative-works?legacy=true&api_key=#{MASHERY_KEY}"
+      response = BBCRestClient.get url
       CreativeWorkParser.parse response
     end
   end
@@ -46,6 +47,18 @@ class CreativeWork
   
   def title
     @json['title']
+  end
+  
+  def href
+    if @json['primaryContentOf']
+      if @json['primaryContentOf'].class == Array
+        @json['primaryContentOf'].select { |l| !l.include? "mobile" }.first
+      else
+        @json['primaryContentOf']
+      end
+    else
+      nil
+    end
   end
   
   def date

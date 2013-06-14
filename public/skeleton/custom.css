@@ -7,7 +7,7 @@ h1, h2, h3, h4, h5 {
 }
 
 header {
-  background: #fee620;
+  background: #4A91BD;
 }
 
 nav {
@@ -39,9 +39,9 @@ nav ul li a:hover {
 
 nav ul li.active a {
   color: #000 !important;
-  background: #fee620;
-  border-right: 1px solid #fee620;
-  border-left: 1px solid #fee620;
+  background: #4A91BD;
+  border-right: 1px solid #4A91BD;
+  border-left: 1px solid #4A91BD;
 }
 
 header h1 {
@@ -52,7 +52,8 @@ header h1 {
 }
 
 header h1 a {
-  color: #000 !important;
+  color: #fff !important;
+  font-weight: 400;
   text-decoration: none;
 }
 
@@ -72,7 +73,7 @@ h1.title {
 
 .nothumbnail {
   width: 100%;
-  height: 150px;
+  height: 211px;
   background: #eee;
 }
 
