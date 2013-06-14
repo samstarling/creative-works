@@ -14,10 +14,10 @@ get '/' do
   haml :list
 end
 
-get '/about/:uri' do
-  uri = URI.escape(params[:uri]).gsub('/', '%2F').gsub(':', '%3A')
-  @cworks = CreativeWorkClient.about uri
-  @title = ThingsClient.get_thing uri
+get '/about/:guid' do
+  guid = params[:guid]
+  @cworks = CreativeWorkClient.about guid
+  @title = ThingsClient.get_thing guid
   haml :list 
 end
 

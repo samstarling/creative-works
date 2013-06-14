@@ -2,15 +2,15 @@ require 'rest_client'
 require 'json'
 require 'retriable'
 
-#RestClient.proxy = "http://www-cache.reith.bbc.co.uk:80"
+RestClient.proxy = "http://www-cache.reith.bbc.co.uk:80"
 
 MASHERY_KEY = ENV["MASHERY_KEY"]
 #MASHERY_BASE = "http://bbc.api.mashery.com/stage/ldp"
 MASHERY_BASE = "http://bbc.api.mashery.com/ldp"
 
 class ThingsClient
-  def self.get_thing uri
-    url = "#{MASHERY_BASE}/things?uri=#{uri}&api_key=#{MASHERY_KEY}"
+  def self.get_thing guid
+    url = "#{MASHERY_BASE}/things?uri=#{guid}&api_key=#{MASHERY_KEY}"
     response = BBCRestClient.get url
     json = JSON.parse(response)
     json['canonicalName']
@@ -26,9 +26,9 @@ class CreativeWorkClient
     end
   end
   
-  def self.about uri
+  def self.about guid
     retriable :tries => 5, :interval => 1 do
-      url = "#{MASHERY_BASE}/creative-works?legacy=true&about=#{uri}&api_key=#{MASHERY_KEY}"
+      url = "#{MASHERY_BASE}/creative-works?legacy=true&about=#{guid}&api_key=#{MASHERY_KEY}"
       response = BBCRestClient.get url
       CreativeWorkParser.parse response
     end
@@ -78,7 +78,6 @@ class CreativeWork
   end
   
   def about
-    puts "#{@json['about']}"
     if @json['about']
       if @json['about'].class == Array
         @json['about'].map { |tag| Tag.new tag }
@@ -152,9 +151,23 @@ class Tag
     end
   end
   
+  def guid
+    if uri
+      match = uri.match(/(([0-9a-fA-F]){8}-([0-9a-fA-F]){4}-([0-9a-fA-F]){4}-([0-9a-fA-F]){4}-([0-9a-fA-F]){12})/)
+      if match
+        match[1]
+      else
+        nil
+      end
+    else
+      nil
+    end
+  end
+  
   def href
     if uri
-      "/about/#{URI.escape(uri).gsub('/', '%2F').gsub(':', '%3A')}"
+      #"/about/#{URI.escape(uri).gsub('/', '%2F').gsub(':', '%3A')}"
+      "/about/#{guid}"
     end
   end
 end
