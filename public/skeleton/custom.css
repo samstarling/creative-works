@@ -38,7 +38,7 @@ nav ul li a:hover {
 }
 
 nav ul li.active a {
-  color: #000 !important;
+  color: #fff !important;
   background: #4A91BD;
   border-right: 1px solid #4A91BD;
   border-left: 1px solid #4A91BD;
