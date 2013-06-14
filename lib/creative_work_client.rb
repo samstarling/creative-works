@@ -2,14 +2,16 @@ require 'rest_client'
 require 'json'
 require 'retriable'
 
-RestClient.proxy = "http://www-cache.reith.bbc.co.uk:80"
+#RestClient.proxy = "http://www-cache.reith.bbc.co.uk:80"
 
 MASHERY_KEY = ENV["MASHERY_KEY"]
+#MASHERY_BASE = "http://bbc.api.mashery.com/stage/ldp"
 MASHERY_BASE = "http://bbc.api.mashery.com/ldp"
 
 class ThingsClient
   def self.get_thing uri
-    response = BBCRestClient.get "#{MASHERY_BASE}/things?uri=#{uri}&api_key=#{MASHERY_KEY}"
+    url = "#{MASHERY_BASE}/things?uri=#{uri}&api_key=#{MASHERY_KEY}"
+    response = BBCRestClient.get url
     json = JSON.parse(response)
     json['canonicalName']
   end
@@ -26,7 +28,8 @@ class CreativeWorkClient
   
   def self.about uri
     retriable :tries => 5, :interval => 1 do
-      response = BBCRestClient.get "#{MASHERY_BASE}/creative-works?legacy=true&about=#{uri}&api_key=#{MASHERY_KEY}"
+      url = "#{MASHERY_BASE}/creative-works?legacy=true&about=#{uri}&api_key=#{MASHERY_KEY}"
+      response = BBCRestClient.get url
       CreativeWorkParser.parse response
     end
   end
@@ -35,7 +38,16 @@ end
 class CreativeWorkParser
   def  self.parse json
     parsed = JSON.parse(json)
-    parsed['@list'].map { |cw| CreativeWork.new parsed, cw }
+    
+    cws = if parsed['@list']
+      parsed['@list']
+    elsif parsed['results']
+      parsed['results']
+    else
+      throw "No CWs found"
+    end
+    
+    cws.map { |cw| CreativeWork.new parsed, cw }
   end
 end
 
@@ -66,12 +78,15 @@ class CreativeWork
   end
   
   def about
+    puts "#{@json['about']}"
     if @json['about']
       if @json['about'].class == Array
         @json['about'].map { |tag| Tag.new tag }
       else
+        tags = Array.new
         tag = Tag.new @json['about']
-        [tag, ]
+        tags << tag
+        tags
       end
     else
       nil
@@ -120,17 +135,27 @@ class Tag
       if @json['label'].class == Array
         @json['label'].first
       else
-        @json['label']
+        if @json['label']
+          @json['label']
+        else
+          @json
+        end
       end
     end
   end
   
   def uri
-    @json['@id']
+    if @json['@id']
+      @json['@id']
+    else
+      nil
+    end
   end
   
   def href
-    "/about/#{URI.escape(uri).gsub('/', '%2F').gsub(':', '%3A')}"
+    if uri
+      "/about/#{URI.escape(uri).gsub('/', '%2F').gsub(':', '%3A')}"
+    end
   end
 end
 
