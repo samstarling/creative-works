@@ -1,15 +1,33 @@
 require 'rest_client'
 require 'json'
+require 'retriable'
 
 RestClient.proxy = "http://www-cache.reith.bbc.co.uk:80"
 
+MASHERY_KEY = ENV["MASHERY_KEY"]
+MASHERY_BASE = "http://bbc.api.mashery.com/ldp"
+
+class ThingsClient
+  def self.get_thing uri
+    response = BBCRestClient.get "#{MASHERY_BASE}/things?uri=#{uri}&api_key=#{MASHERY_KEY}"
+    json = JSON.parse(response)
+    json['canonicalName']
+  end
+end
+
 class CreativeWorkClient
-  MASHERY_KEY = ENV["MASHERY_KEY"]
-  MASHERY_BASE = "http://bbc.api.mashery.com/ldp"
-  
   def self.latest
-    response = BBCRestClient.get "#{MASHERY_BASE}/creative-works?legacy=true&api_key=#{MASHERY_KEY}"
-    CreativeWorkParser.parse response
+    retriable :tries => 5, :interval => 1 do
+      response = BBCRestClient.get "#{MASHERY_BASE}/creative-works?legacy=true&api_key=#{MASHERY_KEY}"
+      CreativeWorkParser.parse response
+    end
+  end
+  
+  def self.about uri
+    retriable :tries => 5, :interval => 1 do
+      response = BBCRestClient.get "#{MASHERY_BASE}/creative-works?legacy=true&about=#{uri}&api_key=#{MASHERY_KEY}"
+      CreativeWorkParser.parse response
+    end
   end
 end
 
@@ -30,15 +48,17 @@ class CreativeWork
     @json['title']
   end
   
+  def date
+    DateTime.parse(@json['dateCreated']).strftime("%-d %B at %H:%M")
+  end
+  
   def about
     if @json['about']
       if @json['about'].class == Array
         @json['about'].map { |tag| Tag.new tag }
       else
         tag = Tag.new @json['about']
-        abouts = Array.new
-        abouts << tag
-        abouts
+        [tag, ]
       end
     else
       nil
@@ -52,7 +72,12 @@ class CreativeWork
   def thumbnail
     if @json['thumbnail']
       if @json['thumbnail'].class == Array
-        @json['thumbnail'].last['@id']
+        big_thumbnail = @json['thumbnail'].select { |t| t['thumbnailType'] == "FixedSize226Thumbnail" }
+        if big_thumbnail.first
+          big_thumbnail.first['@id']
+        else
+          nil
+        end
       else
         if @json['thumbnail']['@id']
           @json['thumbnail']['@id']
@@ -60,7 +85,6 @@ class CreativeWork
           nil
         end
       end
-      
     else
       nil
     end
@@ -88,8 +112,12 @@ class Tag
     end
   end
   
-  def link
-    @json['id']
+  def uri
+    @json['@id']
+  end
+  
+  def href
+    "/about/#{URI.escape(uri).gsub('/', '%2F').gsub(':', '%3A')}"
   end
 end
 

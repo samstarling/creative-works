@@ -10,10 +10,25 @@
     %header
       %div.container
         %div.sixteen.columns
-          %h1 Creative Works
+          %h1
+            %a{:href => "/"} BBC Sport &mdash; Creative Works
+    %nav
+      %div.container
+        %div.sixteen.columns
+          %ul
+            %li{:class => "#{if request.path == "/" then "active" end}"}
+              %a{:href => "/"} Home
+            %li{:class => "#{if request.path == "/about/http%3A%2F%2Fwww.bbc.co.uk%2Fthings%2Fba6e1118-f874-054e-b159-b797c16e9250%23id" then "active" end}"}
+              %a{:href => "/about/http%3A%2F%2Fwww.bbc.co.uk%2Fthings%2Fba6e1118-f874-054e-b159-b797c16e9250%23id"} Football
+            %li{:class => "#{if request.path == "/about/http%3A%2F%2Fwww.bbc.co.uk%2Fthings%2F0987d977-e389-964b-bbb0-0390f4c7a899%23id" then "active" end}"}
+              %a{:href => "/about/http%3A%2F%2Fwww.bbc.co.uk%2Fthings%2F0987d977-e389-964b-bbb0-0390f4c7a899%23id"} Tennis
+            %li{:class => "#{if request.path == "/about/http%3A%2F%2Fwww.bbc.co.uk%2Fthings%2F9284d26e-8e01-db4c-a1dc-1511bf7785fe%23id" then "active" end}"}
+              %a{:href => "/about/http%3A%2F%2Fwww.bbc.co.uk%2Fthings%2F9284d26e-8e01-db4c-a1dc-1511bf7785fe%23id"} Rochdale
     %article
       %div.container
         %div.sixteen.columns
+          - if @title
+            %h1.title= @title
           = partial("partial/cwork_big", :locals => {cwork: @cworks.first})
           - @cworks[1..-1].each do |cwork|
             = partial("partial/cwork_small", :locals => {cwork: cwork})
