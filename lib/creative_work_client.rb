@@ -103,17 +103,17 @@ class CreativeWork
         if big_thumbnail.first
           big_thumbnail.first['@id']
         else
-          nil
+          "http://placekitten.com/226/170"
         end
       else
         if @json['thumbnail']['@id']
           @json['thumbnail']['@id']
         else
-          nil
+          "http://placekitten.com/226/170"
         end
       end
     else
-      nil
+      "http://placekitten.com/226/170"
     end
   end
 end

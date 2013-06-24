@@ -1,11 +1,8 @@
-- if cwork.thumbnail
-  %div.img-container
-    %img.thumbnail{:src => cwork.thumbnail}
-    - if big
-      %h2
-        %a{:href => "#"}= cwork.title
-    - else
-      %h3
-        %a{:href => "#"}= cwork.title
-- else
-  %div.nothumbnail &nbsp;
+%div.img-container
+  %img.thumbnail{:src => cwork.thumbnail}
+  - if big
+    %h2
+      %a{:href => "#"}= cwork.title
+  - else
+    %h3
+      %a{:href => "#"}= cwork.title
