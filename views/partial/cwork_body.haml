@@ -13,4 +13,5 @@
       - cwork.about.each do |about|
         %a.about{:href => about.href}= about
 - rescue => e
-  %p= e
+  %div.taglist
+    %div= An error occurred processing tags.
