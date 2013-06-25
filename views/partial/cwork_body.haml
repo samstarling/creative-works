@@ -7,7 +7,10 @@
 %h5.date
   = cwork.date
 %p= cwork.description
-- if cwork.about && cwork.about.class == Array
-  %div.taglist
-    - cwork.about.each do |about|
-      %a.about{:href => about.href}= about
+- begin
+  - if cwork.about
+    %div.taglist
+      - cwork.about.each do |about|
+        %a.about{:href => about.href}= about
+- rescue => e
+  %p= e
