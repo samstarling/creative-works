@@ -14,3 +14,14 @@ describe Navigation do
     nav.items.should == [first_item, second_item]
   end
 end
+
+describe NavigationItem do
+  it "should be active if the request path matches" do
+    request = double("Request")
+    request.stub(:path) { "/tennis" }
+    nav_item = NavigationItem.new "Tennis", "/tennis"
+    
+    result = nav_item.active_for? request
+    result.should == true
+  end
+end

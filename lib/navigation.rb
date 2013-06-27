@@ -15,6 +15,10 @@ class NavigationItem
     @order = order
   end
   
+  def active_for? request
+    request.path == @path
+  end
+  
   def == other
     @title == other.title
     @path == other.path
