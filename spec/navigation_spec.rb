@@ -20,7 +20,6 @@ describe NavigationItem do
     request = double("Request")
     request.stub(:path) { "/tennis" }
     nav_item = NavigationItem.new "Tennis", "/tennis"
-    
     result = nav_item.active_for? request
     result.should == true
   end
