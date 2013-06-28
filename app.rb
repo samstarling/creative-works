@@ -23,12 +23,7 @@ end
 get '/about/:guid' do
   @page = params[:page] || 1
   @cworks = settings.client.creative_works({legacy: true, about: params[:guid], page: @page})
-  
-  thing = client.things({uri: params[:guid]})
-  if thing
-    @title = thing["name"] || thing["label"]
-  end
-  
+  @title = settings.client.things({uri: params[:guid]})["name"]
   @page_title = @title || "Detail"
   haml :index 
 end
