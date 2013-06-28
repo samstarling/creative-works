@@ -164,6 +164,21 @@ a.about:hover {
 .button.prev { float: left; }
 .button.next { float: right; }
 
+.result {
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 17px;
+  margin-bottom: 19px;
+}
+
+.result .result_title {
+  font-size: 1.3em;
+  line-height: 1.3em;
+}
+
+.result .result_type {
+  color: #aaa;
+}
+
 /*
 @media only screen and (max-width: 767px) {
   .img-container h2, .img-container h3 { display: block; }

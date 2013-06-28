@@ -1,8 +1,11 @@
 %h1.title Results
 - if @results
-  %ul
+  %div.results
   - @results.each do |result|
-    %li
-      %a{:href => "/about/#{result.guid}"}= result
+    %div.result
+      %div.result_title
+        %a{:href => "/about/#{result.guid}"}= result
+      %div.result_uri= result.uri
+      %div.result_type= result.type.join(", ")
 - else
   %p No results found.

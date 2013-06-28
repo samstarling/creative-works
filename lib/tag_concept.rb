@@ -41,6 +41,6 @@ class TagConcept
   
   def to_s
     # TODO Test this
-    preferred_label || name || canonical_name || label || "NaN"
+    preferred_label || name || canonical_name || label || "No Label"
   end
 end
