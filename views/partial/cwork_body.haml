@@ -8,5 +8,7 @@
   = cwork.created_date
 %p= cwork.description
 %div.taglist
-  %div= cwork.about
-  %div= cwork.mentions
+  - if cwork.about
+    - cwork.about.each do |tag|
+      %a= tag
+  
