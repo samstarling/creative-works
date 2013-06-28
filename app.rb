@@ -15,7 +15,7 @@ end
 
 get '/' do
   @page = params[:page] || 1
-  @cworks = settings.client.creative_works({ legacy: true, page: @page })
+  @cworks = settings.client.creative_works({legacy: true, page: @page})
   @page_title = "Creative Works"
   haml :index
 end
