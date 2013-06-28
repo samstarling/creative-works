@@ -12,8 +12,14 @@ class CoreClient
   
   private
   
-  def get_and_parse url
-    response = @rest_client.get "#{@base_url}/#{url}"
+  def get_and_parse path
+    url = "#{@base_url}/#{path}"
+    response = @rest_client.get url
+
+    if response.code != 200
+      raise CoreClientError.new "HTTP response for #{url} was #{response.code}"
+    end
+
     json = JSON.parse(response.body)
     if json['results']
       json['results'].map do |result|
@@ -24,3 +30,5 @@ class CoreClient
     end
   end
 end
+
+class CoreClientError < RuntimeError; end

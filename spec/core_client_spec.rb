@@ -8,9 +8,10 @@ describe CoreClient do
     @core_client = CoreClient.new @rest_client, @base_url
   end
   
-  def mock_response body
+  def mock_response body, code=200
     response = double("Response")
     response.stub(:body) { body }
+    response.stub(:code) { code }
     @rest_client.stub(:get) { response }
   end
   
@@ -33,6 +34,11 @@ describe CoreClient do
     it "returns nil when the response is empty" do
       mock_response "{}"
       @core_client.creative_works.should == nil
+    end
+    
+    it "throws an exception for non-200 response codes" do
+      mock_response "Fail", 500
+      expect { @core_client.creative_works }.to raise_error(CoreClientError)
     end
   end
 end
