@@ -18,6 +18,10 @@ describe CreativeWork do
       @cw.short_title.should == "Walker in rehab on road to Sochi 2014"
     end
     
+    it "parses the description" do
+      @cw.description.should == "Bobsleigher Paula Walker is hopeful of recovering from a knee injury to compete in the Sochi 2014 Games."
+    end
+    
     it "parses the locator" do
       @cw.locator.should == ["urn:bbc:cps:asset:23087674"]
     end

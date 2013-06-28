@@ -1,5 +1,7 @@
 require 'date'
 
+require_relative 'tag'
+
 class CreativeWork
   def initialize json
     @json = json
@@ -13,12 +15,16 @@ class CreativeWork
     @json['title']
   end
   
-  def href
-    @json['primaryContentOf']
-  end
-  
   def short_title
     @json['shortTitle']
+  end
+  
+  def description
+    @json['description']
+  end
+  
+  def href
+    @json['primaryContentOf']
   end
   
   def locator
@@ -58,19 +64,5 @@ class CreativeWork
     @json[type].map do |tag|
       Tag.new tag['preferredLabel'], tag['@id']
     end
-  end
-end
-
-class Tag
-  attr_reader :title, :uri
-  
-  def initialize title, uri
-    @title = title
-    @uri = uri
-  end
-  
-  def == other
-    @title == other.title
-    @uri == other.uri
   end
 end

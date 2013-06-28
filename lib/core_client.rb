@@ -15,8 +15,8 @@ class CoreClient
     @base_url = base_url
   end
     
-  def creative_works
-    get_and_parse "creative-works?api_key=#{@api_key}"
+  def creative_works legacy = false
+    get_and_parse "creative-works?legacy=#{legacy}&api_key=#{@api_key}"
   end
   
   private

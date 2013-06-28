@@ -16,9 +16,14 @@ describe CoreClient do
   end
   
   describe "creative_works" do
-    it "fetches the latest Creative Works by default" do
-      @rest_client.should_receive(:get).with("#{@base_url}/creative-works?api_key=foo")
+    it "fetches the latest non-legacy Creative Works by default" do
+      @rest_client.should_receive(:get).with("#{@base_url}/creative-works?legacy=false&api_key=foo")
       @core_client.creative_works
+    end
+    
+    it "fetches legacy Creative Works" do
+      @rest_client.should_receive(:get).with("#{@base_url}/creative-works?legacy=false&api_key=foo")
+      @core_client.creative_works true
     end
     
     it "produces the correct number of Creative Works" do

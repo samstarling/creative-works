@@ -5,6 +5,7 @@ require 'date'
 require_relative '../lib/navigation'
 require_relative '../lib/creative_work'
 require_relative '../lib/core_client'
+require_relative '../lib/tag'
 
 def fixture path
   dir = File.dirname(__FILE__)
