@@ -2,6 +2,7 @@ require 'rubygems'
 require 'sinatra'
 require 'json'
 require 'sinatra/partial'
+require 'rest-client'
 
 require_relative 'lib/core_client'
 
