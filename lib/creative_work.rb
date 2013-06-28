@@ -56,9 +56,10 @@ class CreativeWork
       thumbnails = @json['thumbnail'].select do |thumb|
         thumb['thumbnailType'] == "FixedSize464Thumbnail"
       end
-      puts JSONHelper.normalize_array(thumbnails)
       if JSONHelper.normalize_array(thumbnails).first
-        JSONHelper.normalize_array(thumbnails).first['@id'].gsub("#image", "")
+        if JSONHelper.normalize_array(thumbnails).first['@id']
+          JSONHelper.normalize_array(thumbnails).first['@id'].gsub("#image", "")
+        end
       end
     end
   end
