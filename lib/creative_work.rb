@@ -18,7 +18,7 @@ class CreativeWork
   end
   
   def locator
-    @json['locator']
+    [@json['locator'], ].flatten
   end
   
   def created_date

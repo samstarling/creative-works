@@ -19,7 +19,7 @@ describe CreativeWork do
     end
     
     it "parses the locator" do
-      @cw.locator.should == "urn:bbc:cps:asset:23087674"
+      @cw.locator.should == ["urn:bbc:cps:asset:23087674"]
     end
     
     it "parses the created date" do
@@ -28,6 +28,16 @@ describe CreativeWork do
     
     it "parses the modified date" do
       @cw.modified_date.should == DateTime.parse("2013-06-27T15:09:11Z")
+    end
+  end
+  
+  describe "parsing a more complicated Creative Work" do
+    before :each do
+      @cw = CreativeWork.new json_fixture("creative_work/complex.json")
+    end
+    
+    it "parses multiple locators" do
+      @cw.locator.should == ["urn:bbc:cps:asset:23087674", "urn:bbc:cps:asset:1111"]
     end
   end
   
