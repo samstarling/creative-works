@@ -6,26 +6,24 @@ require 'rest-client'
 
 require_relative 'lib/core_client'
 
-# NB: Castleford = 663de257-779e-4869-bd68-6c469a984469
-
-if ENV["SERVER_ENV"] == "sandbox"
-  RestClient.proxy = "http://www-cache.reith.bbc.co.uk:80"
+configure do
+  set :client, CoreClient.new(ENV["MASHERY_KEY"])
+  if ENV["SERVER_ENV"] == "sandbox"
+    RestClient.proxy = "http://www-cache.reith.bbc.co.uk:80"
+  end
 end
 
 get '/' do
-  client = CoreClient.new ENV["MASHERY_KEY"]
   @page = params[:page] || 1
-  @cworks = client.creative_works({ legacy: true, page: @page })
+  @cworks = settings.client.creative_works({ legacy: true, page: @page })
   @page_title = "Creative Works"
   haml :index
 end
 
 get '/about/:guid' do
-  client = CoreClient.new ENV["MASHERY_KEY"]
   @page = params[:page] || 1
-  @cworks = client.creative_works({ legacy: true, about: params[:guid], page: @page })
+  @cworks = settings.client.creative_works({legacy: true, about: params[:guid], page: @page})
   
-  # TODO Tidy up this bit
   thing = client.things({uri: params[:guid]})
   if thing
     @title = thing["name"] || thing["label"]
@@ -36,8 +34,7 @@ get '/about/:guid' do
 end
 
 get '/search' do
-  client = CoreClient.new ENV["MASHERY_KEY"]
-  @results = client.tag_concepts({ legacy: true, search: params[:q] })
+  @results = settings.client.tag_concepts({legacy: true, search: params[:q]})
   @page_title = "Search for '#{params[:q]}'"
   haml :search
 end
