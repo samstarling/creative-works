@@ -26,9 +26,9 @@ get '/about/:guid' do
   haml :index 
 end
 
-get '/search/:term' do
+get '/search' do
   client = CoreClient.new ENV["MASHERY_KEY"]
-  @results = client.tag_concepts({legacy: true, search: params[:term]})
+  @results = client.tag_concepts({legacy: true, search: params[:q]})
   @page_title = "Search"
   haml :search
 end

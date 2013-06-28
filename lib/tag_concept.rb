@@ -29,6 +29,16 @@ class TagConcept
     JSONHelper.normalize_array(@json['canonicalName']).first
   end
   
+  def guid
+    regex = /([0-9a-fA-F]){8}-([0-9a-fA-F]){4}-([0-9a-fA-F]){4}-([0-9a-fA-F]){4}-([0-9a-fA-F]){12}/
+    matches = regex.match(uri)
+    if matches
+      matches[0]
+    else
+      nil
+    end
+  end
+  
   def to_s
     # TODO Test this
     preferred_label || name || canonical_name || label || "NaN"

@@ -8,8 +8,14 @@ describe TagConcept do
     tag_concept.label.should == nil
   end
   
-  it "also parses tag concepts with labels" do
+  it "parses tag concepts with labels" do
     tag_concept = TagConcept.new json_fixture("tag_concept/simple.json")
     tag_concept.label.should == "Stoke v Liverpool"
+  end
+  
+  it "parses GUIDs when possible" do
+    tag_concept = TagConcept.new json_fixture("tag_concept/bbc_concept.json")
+    tag_concept.uri.should == "http://www.bbc.co.uk/things/4bdbf21d-d1ad-7147-ab08-612cd0dc20b4#id"
+    tag_concept.guid.should == "4bdbf21d-d1ad-7147-ab08-612cd0dc20b4"
   end
 end

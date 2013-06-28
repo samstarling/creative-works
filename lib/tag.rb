@@ -27,6 +27,14 @@ class Tag
     attribute_safe("shortLabel").first
   end
   
+  def name
+    attribute_safe("name").first
+  end
+  
+  def canonical_name
+    attribute_safe("canonicalName").first
+  end
+  
   def guid
     regex = /([0-9a-fA-F]){8}-([0-9a-fA-F]){4}-([0-9a-fA-F]){4}-([0-9a-fA-F]){4}-([0-9a-fA-F]){12}/
     matches = regex.match(uri)
@@ -42,7 +50,8 @@ class Tag
   end
   
   def to_s
-    title
+    # TODO Test this
+    preferred_label || name || canonical_name || label || "NaN"
   end
   
   def == other

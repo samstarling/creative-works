@@ -140,6 +140,21 @@ a.about:hover {
 }
 
 .img-container h2, .img-container h3 { display: none; }
+
+#search {
+  padding-top: 11px;
+}
+
+#search form {
+  margin: 0;
+  padding: 0;
+}
+
+#search input {
+  margin: 0;
+  width: 100%;
+}
+
 /*
 @media only screen and (max-width: 767px) {
   .img-container h2, .img-container h3 { display: block; }

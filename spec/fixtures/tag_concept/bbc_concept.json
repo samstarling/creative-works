@@ -1,0 +1,36 @@
+{
+    "@id": "http://www.bbc.co.uk/things/4bdbf21d-d1ad-7147-ab08-612cd0dc20b4#id",
+    "@type": [
+        "Resource",
+        "owl_Thing",
+        "core_Thing",
+        "tagging_TagConcept",
+        "CompetitiveSportingOrganisation",
+        "Thing",
+        "SportingOrganisation",
+        "http://xmlns.com/foaf/0.1/Organisation",
+        "SportTagConcept",
+        "TagConcept"
+    ],
+    "canonicalName": "Manchester City",
+    "disambiguationHint": "English Football Team",
+    "label": [
+        "Man City",
+        "Manchester City"
+    ],
+    "name": "Manchester City",
+    "preferredLabel": "Manchester City",
+    "shortLabel": "Man City",
+    "shortName": "Man City",
+    "slug": "manchester-city",
+    "document": [
+        "http://open.live.bbc.co.uk/esp-service/moreover/newsdesk4/838683a289776554?output=rss;recipe=sport_refresh",
+        "http://www.bbc.co.uk/sport/football/teams/manchester-city",
+        "http://www.mcfc.co.uk/"
+    ],
+    "primaryTopicOf": [
+        "http://www.bbc.co.uk/sport/football/teams/manchester-city",
+        "http://www.mcfc.co.uk/"
+    ],
+    "sameAs": "http://dbpedia.org/resource/Manchester_City_F.C."
+}
