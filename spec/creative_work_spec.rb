@@ -1,7 +1,7 @@
 require_relative 'spec_helper'
 
-describe NewCreativeWork do
+describe CreativeWork do
   it "instantiates" do
-    NewCreativeWork.new "foo"
+    CreativeWork.new "foo"
   end
 end

@@ -47,11 +47,11 @@ class CreativeWorkParser
       throw "No CWs found"
     end
     
-    cws.map { |cw| CreativeWork.new parsed, cw }
+    cws.map { |cw| CreativeWorkOld.new parsed, cw }
   end
 end
 
-class CreativeWork
+class CreativeWorkOld
   def initialize list_json, item_json
     @list_json = list_json
     @json = item_json
