@@ -15,25 +15,16 @@ class CoreClient
     @base_url = base_url
   end
     
-  def creative_works legacy = false, about = nil
-    if about
-      get_and_parse "creative-works?legacy=#{legacy}&about=#{about}&api_key=#{@api_key}"
-    else
-      get_and_parse "creative-works?legacy=#{legacy}&api_key=#{@api_key}"
-    end
+  def creative_works params = { legacy: false }
+    param_array = params.map { |k, v| "#{k}=#{v}" }
+    param_string = param_array.join("&")
+    get_creative_works "creative-works?#{param_string}&api_key=#{@api_key}"
   end
   
   private
   
-  def get_and_parse path
-    url = "#{@base_url}/#{path}"
-    response = @rest_client.get url
-
-    if response.code != 200
-      raise CoreClientError.new "HTTP response for #{url} was #{response.code}"
-    end
-
-    json = JSON.parse(response.body)
+  def get_creative_works path
+    json = safe_get_json path
     if json['results']
       json['results'].map do |result|
         CreativeWork.new result
@@ -41,6 +32,17 @@ class CoreClient
     else
       nil
     end
+  end
+  
+  def safe_get_json path
+    url = "#{@base_url}/#{path}"
+    response = @rest_client.get url
+
+    if response.code != 200
+      raise CoreClientError.new "HTTP response for #{url} was #{response.code}"
+    end
+    
+    JSON.parse(response.body)
   end
 end
 

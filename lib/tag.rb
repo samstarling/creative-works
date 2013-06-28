@@ -27,6 +27,9 @@ class Tag
     attribute_safe("shortLabel").first
   end
   
+  def guid
+  end
+  
   def is_bbc_thing?
     uri.start_with? "http://www.bbc.co.uk/things/"
   end

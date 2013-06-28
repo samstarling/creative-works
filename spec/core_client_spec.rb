@@ -23,12 +23,12 @@ describe CoreClient do
     
     it "fetches legacy Creative Works" do
       @rest_client.should_receive(:get).with("#{@base_url}/creative-works?legacy=true&api_key=foo")
-      @core_client.creative_works legacy=true
+      @core_client.creative_works({ legacy: true })
     end
     
     it "fetches Creative Works about a GUID" do
       @rest_client.should_receive(:get).with("#{@base_url}/creative-works?legacy=true&about=donkeys&api_key=foo")
-      @core_client.creative_works legacy=true, about="donkeys"
+      @core_client.creative_works({ legacy: true, about: "donkeys" })
     end
     
     it "produces the correct number of Creative Works" do

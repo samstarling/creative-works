@@ -14,7 +14,7 @@ end
 
 get '/' do
   client = CoreClient.new ENV["MASHERY_KEY"]
-  @cworks = client.creative_works legacy=true
+  @cworks = client.creative_works({ legacy: true })
   @page_title = "Creative Works"
   haml :index
 end
@@ -22,7 +22,7 @@ end
 get '/about/:guid' do
   client = CoreClient.new ENV["MASHERY_KEY"]
   guid = params[:guid]
-  @cworks = client.creative_works legacy=true, about=guid
+  @cworks = client.creative_works({legacy: true, about: guid})
   @page_title = "Detail"
   haml :list 
 end

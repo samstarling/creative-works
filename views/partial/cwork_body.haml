@@ -10,5 +10,5 @@
 %div.taglist
   - if cwork.about
     - cwork.about.each do |tag|
-      %a= tag
+      %a.about{:href => "/about/#{tag.guid}"}= tag
   
