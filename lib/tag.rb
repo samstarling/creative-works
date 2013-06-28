@@ -1,21 +1,47 @@
+require_relative 'json_helper'
+
 class Tag
-  attr_reader :title, :uri
+  attr_reader :uri
   
-  def initialize title, uri
-    @title = title
-    @uri = uri
+  def initialize json
+    @json = json
+  end
+  
+  def uri
+    @json['@id']
+  end
+  
+  def title
+    preferred_label || label || short_label
+  end
+  
+  def label
+    attribute_safe("shortLabel").first
+  end
+  
+  def preferred_label
+    attribute_safe("preferredLabel").first
+  end
+  
+  def short_label
+    attribute_safe("shortLabel").first
   end
   
   def is_bbc_thing?
-    @uri.start_with? "http://www.bbc.co.uk/things/"
+    uri.start_with? "http://www.bbc.co.uk/things/"
   end
   
   def to_s
-    "#{@title}"
+    "#{title}"
   end
   
   def == other
-    @title == other.title
-    @uri == other.uri
+    uri == other.uri
+  end
+  
+  private
+  
+  def attribute_safe name
+    JSONHelper.normalize_array(@json[name])
   end
 end

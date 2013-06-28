@@ -29,7 +29,7 @@ class CreativeWork
   end
   
   def locator
-    JSONHelper.normalise_array(@json['locator'])
+    JSONHelper.normalize_array(@json['locator'])
   end
   
   def created_date
@@ -45,7 +45,7 @@ class CreativeWork
       thumbnails = @json['thumbnail'].select do |thumb|
         thumb['thumbnailType'] == "FixedSize464Thumbnail"
       end
-      JSONHelper.normalise_array(thumbnails).first['@id'].gsub("#image", "")
+      JSONHelper.normalize_array(thumbnails).first['@id'].gsub("#image", "")
     else
       nil
     end
@@ -63,10 +63,9 @@ class CreativeWork
   
   def tag type
     if @json[type]
-      tags = JSONHelper.normalise_array(@json[type])
+      tags = JSONHelper.normalize_array(@json[type])
       tags.map do |tag|
-        labels = JSONHelper.normalise_array(tag['preferredLabel'])
-        Tag.new labels.first, tag['@id']
+        Tag.new tag
       end
     else
       nil
