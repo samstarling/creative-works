@@ -29,6 +29,10 @@ describe CreativeWork do
     it "parses the modified date" do
       @cw.modified_date.should == DateTime.parse("2013-06-27T15:09:11Z")
     end
+    
+    it "parses the web link" do
+      @cw.href.should == "http://www.bbc.co.uk/sport/0/winter-sports/23087674"
+    end
   end
   
   describe "parsing a more complex Creative Work" do

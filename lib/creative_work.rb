@@ -13,6 +13,10 @@ class CreativeWork
     @json['title']
   end
   
+  def href
+    @json['primaryContentOf']
+  end
+  
   def short_title
     @json['shortTitle']
   end
