@@ -1,8 +1,5 @@
 %div.img-container
-  %img.thumbnail{:src => cwork.thumbnail}
-  - if big
-    %h2
-      %a{:href => "#"}= cwork.title
+  - if cwork.thumbnail
+    %img.thumbnail{:src => cwork.thumbnail}
   - else
-    %h3
-      %a{:href => "#"}= cwork.title
+    %img.thumbnail{:src => "http://fillmurray.com/g/464/261"}

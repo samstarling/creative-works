@@ -1,11 +1,15 @@
 require 'json'
+require 'retriable'
 
 require_relative 'creative_work'
 require_relative 'tag_concept'
 
 class BBCRestClient
   def get url
-    RestClient::Resource.new(url).get(:accept => "application/json-ld")
+    # TODO Eventually, don't retry
+    retriable :on => Timeout::Error, :tries => 5, :interval => 1 do
+      RestClient::Resource.new(url).get(:accept => "application/json-ld")
+    end
   end
 end
 
@@ -23,7 +27,12 @@ class CoreClient
   
   def tag_concepts params = { legacy: false }
     q_str = query_string params
-    get_tag_concepts "tag-concepts?#{q_str}&api_key=#{@api_key}"
+    get_tag_concepts "tag-concepts?#{q_str.gsub(" ", "%20")}&api_key=#{@api_key}"
+  end
+  
+  def things params = {}
+    q_str = query_string params
+    safe_get_json "things?#{q_str}&api_key=#{@api_key}"
   end
   
   private
@@ -51,7 +60,7 @@ class CoreClient
       nil
     end
   end
-  
+
   def query_string params
     param_array = params.map { |k, v| "#{k}=#{v}" }
     param_string = param_array.join("&")
@@ -60,7 +69,7 @@ class CoreClient
   def safe_get_json path
     url = "#{@base_url}/#{path}"
     response = @rest_client.get url
-
+    
     if response.code != 200
       raise CoreClientError.new "HTTP response for #{url} was #{response.code}"
     end

@@ -14,21 +14,30 @@ end
 
 get '/' do
   client = CoreClient.new ENV["MASHERY_KEY"]
-  @cworks = client.creative_works({ legacy: true })
+  @page = params[:page] || 1
+  @cworks = client.creative_works({ legacy: true, page: @page })
   @page_title = "Creative Works"
   haml :index
 end
 
 get '/about/:guid' do
   client = CoreClient.new ENV["MASHERY_KEY"]
-  @cworks = client.creative_works({legacy: true, about: params[:guid]})
-  @page_title = "Detail"
+  @page = params[:page] || 1
+  @cworks = client.creative_works({ legacy: true, about: params[:guid], page: @page })
+  
+  # TODO Tidy up this bit
+  thing = client.things({uri: params[:guid]})
+  if thing
+    @title = thing["name"] || thing["label"]
+  end
+  
+  @page_title = @title || "Detail"
   haml :index 
 end
 
 get '/search' do
   client = CoreClient.new ENV["MASHERY_KEY"]
-  @results = client.tag_concepts({legacy: true, search: params[:q]})
-  @page_title = "Search"
+  @results = client.tag_concepts({ legacy: true, search: params[:q] })
+  @page_title = "Search for '#{params[:q]}'"
   haml :search
 end

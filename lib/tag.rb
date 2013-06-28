@@ -51,7 +51,7 @@ class Tag
   
   def to_s
     # TODO Test this
-    preferred_label || name || canonical_name || label || "NaN"
+    label || preferred_label || name || canonical_name || "NaN"
   end
   
   def == other

@@ -3,3 +3,9 @@
 = partial("partial/cwork_big", :locals => {cwork: @cworks.first})
 - @cworks[1..-1].each do |cwork|
   = partial("partial/cwork_small", :locals => {cwork: cwork})
+
+%div.pagination
+  - if @page.to_i > 1
+    %a.button.prev{:href => "?page=#{@page.to_i - 1}"} &larr;
+  - if @cworks.size == 10
+    %a.button.next{:href => "?page=#{@page.to_i + 1}"} &rarr;

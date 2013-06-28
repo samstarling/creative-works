@@ -155,6 +155,15 @@ a.about:hover {
   width: 100%;
 }
 
+.pagination .button {
+  background: #eee;
+  padding: 20px;
+  font-size: 20px;
+}
+
+.button.prev { float: left; }
+.button.next { float: right; }
+
 /*
 @media only screen and (max-width: 767px) {
   .img-container h2, .img-container h3 { display: block; }
