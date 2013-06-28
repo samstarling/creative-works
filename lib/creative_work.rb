@@ -29,7 +29,7 @@ class CreativeWork
   end
   
   def locator
-    [@json['locator'], ].flatten
+    JSONHelper.normalise_array(@json['locator'])
   end
   
   def created_date
@@ -65,7 +65,8 @@ class CreativeWork
     if @json[type]
       tags = JSONHelper.normalise_array(@json[type])
       tags.map do |tag|
-        Tag.new tag['preferredLabel'], tag['@id']
+        labels = JSONHelper.normalise_array(tag['preferredLabel'])
+        Tag.new labels.first, tag['@id']
       end
     else
       nil

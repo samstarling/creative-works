@@ -67,7 +67,7 @@ describe CreativeWork do
     end
   end
   
-  describe "handling optional fields" do
+  describe "handling optional/complex fields" do
     it "handles missing thumbnails" do
       @cw = CreativeWork.new json_fixture("creative_work/no_thumbnail.json")
       @cw.thumbnail.should == nil
@@ -77,6 +77,12 @@ describe CreativeWork do
       @cw = CreativeWork.new json_fixture("creative_work/no_tags.json")
       @cw.about.should == nil
       @cw.mentions.should == nil
+    end
+    
+    it "handles odd cases where tags have multiple preferredLabels" do
+      @cw = CreativeWork.new json_fixture("creative_work/multiple_tag_labels.json")
+      bobsleigh = Tag.new "Bobsleigh", "http://www.bbc.co.uk/things/521df978-7583-4e19-ad6d-2a83a595a8a6#id"
+      @cw.about.should include bobsleigh
     end
   end
   
