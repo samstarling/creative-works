@@ -5,7 +5,7 @@
   %h3
     %a{:href => cwork.url}= cwork.title
 %h5.date
-  = cwork.created_date
+  = cwork.friendly_modified_date
 %p= cwork.description
 %div.taglist
   - if cwork.about
