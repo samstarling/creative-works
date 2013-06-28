@@ -16,15 +16,6 @@
     ],
     "about": [
         {
-            "@id": "http://www.bbc.co.uk/things/10ddb0dd-f49b-6d4a-a327-7f1d24805c33#id",
-            "label": [
-                "Fleetwood",
-                "Fleetwood Town"
-            ],
-            "preferredLabel": "Fleetwood Town",
-            "shortLabel": "Fleetwood"
-        },
-        {
             "@id": "http://www.bbc.co.uk/things/71d1288c-d1ea-6a4a-bd87-237dbb9e6470#id",
             "label": [
                 "League Two",
@@ -49,15 +40,6 @@
             ],
             "preferredLabel": "Fleetwood Town",
             "shortLabel": "Fleetwood"
-        },
-        {
-            "@id": "http://www.bbc.co.uk/things/71d1288c-d1ea-6a4a-bd87-237dbb9e6470#id",
-            "label": [
-                "League Two",
-                "npower League Two"
-            ],
-            "preferredLabel": "League Two",
-            "shortLabel": "League Two"
         },
         {
             "@id": "http://www.bbc.co.uk/things/ba6e1118-f874-054e-b159-b797c16e9250#id",

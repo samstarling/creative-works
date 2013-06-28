@@ -40,6 +40,20 @@ describe CreativeWork do
       @cw.locator.should == ["urn:bbc:cps:asset:23087674", "urn:bbc:cps:asset:1111"]
     end
     
+    it "parses about tags" do
+      league_two = Tag.new "League Two", "http://www.bbc.co.uk/things/71d1288c-d1ea-6a4a-bd87-237dbb9e6470#id"
+      football = Tag.new "Football", "http://www.bbc.co.uk/things/ba6e1118-f874-054e-b159-b797c16e9250#id"
+      @cw.about.should include league_two
+      @cw.about.should include football
+    end
+    
+    it "parses mentions tags" do
+      fleetwood = Tag.new "Fleetwood Town", "http://www.bbc.co.uk/things/10ddb0dd-f49b-6d4a-a327-7f1d24805c33#id"
+      football = Tag.new "Football", "http://www.bbc.co.uk/things/ba6e1118-f874-054e-b159-b797c16e9250#id"
+      @cw.mentions.should include fleetwood
+      @cw.mentions.should include football
+    end
+    
     it "returns the biggest image as the thumbnail" do
       @cw.thumbnail.should == "http://news.bbcimg.co.uk/media/images/68418000/jpg/_68418058_68417547.jpg"
     end

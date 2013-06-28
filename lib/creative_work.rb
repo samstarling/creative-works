@@ -35,4 +35,34 @@ class CreativeWork
     end
     thumbnails.first['@id'].gsub("#image", "")
   end
+  
+  def about
+    tag 'about'
+  end
+  
+  def mentions
+    tag 'mentions'
+  end
+  
+  private
+  
+  def tag type
+    @json[type].map do |tag|
+      Tag.new tag['preferredLabel'], tag['@id']
+    end
+  end
+end
+
+class Tag
+  attr_reader :title, :uri
+  
+  def initialize title, uri
+    @title = title
+    @uri = uri
+  end
+  
+  def == other
+    @title == other.title
+    @uri == other.uri
+  end
 end
