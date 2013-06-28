@@ -32,7 +32,7 @@ class Tag
   end
   
   def to_s
-    "#{title}"
+    title
   end
   
   def == other

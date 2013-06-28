@@ -25,7 +25,7 @@ class CreativeWork
   end
   
   def href
-    @json['primaryContentOf']
+    JSONHelper.normalize_array(@json['primaryContentOf']).first
   end
   
   def locator

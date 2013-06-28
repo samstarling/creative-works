@@ -6,6 +6,10 @@ require 'sinatra/partial'
 require_relative 'lib/creative_work_client'
 require_relative 'lib/core_client'
 
+# NB: Castleford = 663de257-779e-4869-bd68-6c469a984469
+
+RestClient.proxy = "http://www-cache.reith.bbc.co.uk:80"
+
 get '/' do
   client = CoreClient.new ENV["MASHERY_KEY"]
   @cworks = client.creative_works legacy=true
