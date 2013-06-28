@@ -21,8 +21,14 @@ end
 
 get '/about/:guid' do
   client = CoreClient.new ENV["MASHERY_KEY"]
-  guid = params[:guid]
-  @cworks = client.creative_works({legacy: true, about: guid})
+  @cworks = client.creative_works({legacy: true, about: params[:guid]})
   @page_title = "Detail"
-  haml :list 
+  haml :index 
+end
+
+get '/search/:term' do
+  client = CoreClient.new ENV["MASHERY_KEY"]
+  @results = client.tag_concepts({legacy: true, search: params[:term]})
+  @page_title = "Search"
+  haml :search
 end

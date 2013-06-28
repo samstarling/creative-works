@@ -7,4 +7,3 @@ class JSONHelper
     end
   end
 end
-  

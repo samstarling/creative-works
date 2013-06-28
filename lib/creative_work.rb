@@ -47,6 +47,10 @@ class CreativeWork
     DateTime.parse(@json['dateModified'])
   end
   
+  def friendly_modified_date
+    modified_date.strftime("%H:%M, %e %B %Y")
+  end
+  
   def thumbnail
     if @json['thumbnail']
       thumbnails = @json['thumbnail'].select do |thumb|
@@ -59,11 +63,11 @@ class CreativeWork
   end
   
   def about
-    tag 'about'
+    tag('about')
   end
   
   def mentions
-    tag 'mentions'
+    tag('mentions')
   end
   
   private
@@ -71,9 +75,12 @@ class CreativeWork
   def tag type
     if @json[type]
       tags = JSONHelper.normalize_array(@json[type])
-      tags.map do |tag|
-        Tag.new tag
+      new_tags = tags.map do |tag|
+        if tag['@id']
+          Tag.new tag
+        end
       end
+      new_tags.select { |t| nil != t }
     else
       nil
     end

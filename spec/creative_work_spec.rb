@@ -34,6 +34,10 @@ describe CreativeWork do
       @cw.modified_date.should == DateTime.parse("2013-06-27T15:09:11Z")
     end
     
+    it "gives a friendly modified date" do
+      @cw.friendly_modified_date.should == "15:09, 27 June 2013"
+    end
+    
     it "parses the web link" do
       @cw.url.should == "http://www.bbc.co.uk/sport/0/winter-sports/23087674"
     end

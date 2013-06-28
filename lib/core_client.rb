@@ -1,6 +1,7 @@
 require 'json'
 
 require_relative 'creative_work'
+require_relative 'tag_concept'
 
 class BBCRestClient
   def get url
