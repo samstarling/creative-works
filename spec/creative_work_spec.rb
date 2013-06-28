@@ -59,6 +59,13 @@ describe CreativeWork do
     end
   end
   
+  describe "handling optional fields" do
+    it "handles missing thumbnails" do
+      @cw = CreativeWork.new json_fixture("creative_work/no_thumbnail.json")
+      @cw.thumbnail.should == nil
+    end
+  end
+  
   describe "parsing an invalid Creative Work" do
   end
 end

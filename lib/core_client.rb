@@ -1,5 +1,7 @@
 require 'json'
 
+require_relative 'creative_work'
+
 class BBCRestClient
   def get url
     RestClient::Resource.new(url).get(:accept => "application/json-ld")

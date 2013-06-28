@@ -30,10 +30,14 @@ class CreativeWork
   end
   
   def thumbnail
-    thumbnails = @json['thumbnail'].select do |thumb|
-      thumb['thumbnailType'] == "FixedSize464Thumbnail"
+    if @json['thumbnail']
+      thumbnails = @json['thumbnail'].select do |thumb|
+        thumb['thumbnailType'] == "FixedSize464Thumbnail"
+      end
+      thumbnails.first['@id'].gsub("#image", "")
+    else
+      nil
     end
-    thumbnails.first['@id'].gsub("#image", "")
   end
   
   def about

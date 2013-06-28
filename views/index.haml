@@ -1,14 +1,38 @@
 !!!
 %html{:lang => "en"}
   %head
-    %link{:href => "/css/style.css", :rel => "stylesheet"}
-    %link{:href => "http://fonts.googleapis.com/css?family=Roboto+Condensed:300", :rel => "stylesheet"}
+    %meta{:name => "viewport", :content => "width=device-width, initial-scale=1, maximum-scale=1"}
+    %link{:href => "/skeleton/base.css", :rel => "stylesheet"}
+    %link{:href => "/skeleton/layout.css", :rel => "stylesheet"}
+    %link{:href => "/skeleton/skeleton.css", :rel => "stylesheet"}
+    %link{:href => "/skeleton/custom.css", :rel => "stylesheet"}
+    %link{:href => "http://fonts.googleapis.com/css?family=Roboto+Condensed:300,400,500", :rel => "stylesheet"}
+    %title= "#{@page_title} | LDP"
   %body
-    .container
-      %div.img
-        %img{:src => ""}
-      %div.text
-        %div.title
-        %div.description
-    %script{:src => "http://code.jquery.com/jquery-1.7.2.min.js"}
-    %script{:src => "/js/app.js"}
+    %header
+      %div.container
+        %div.sixteen.columns
+          %h1
+            %a{:href => "/"} Creative Works
+    %nav
+      %div.container
+        %div.sixteen.columns
+          %ul
+            %li{:class => "#{if request.path == "/" then "active" end}"}
+              %a{:href => "/"} Home
+            %li{:class => "#{if request.path == "/about/ba6e1118-f874-054e-b159-b797c16e9250" then "active" end}"}
+              %a{:href => "/about/ba6e1118-f874-054e-b159-b797c16e9250"} Football
+            %li{:class => "#{if request.path == "/about/0987d977-e389-964b-bbb0-0390f4c7a899" then "active" end}"}
+              %a{:href => "/about/0987d977-e389-964b-bbb0-0390f4c7a899"} Tennis
+            %li{:class => "#{if request.path == "/about/bb2d8784-45cb-4358-b506-7832b01831fd" then "active" end}"}
+              %a{:href => "/about/bb2d8784-45cb-4358-b506-7832b01831fd"} Cricket
+            %li{:class => "#{if request.path == "/about/b773195a-9880-4773-88d4-50d36260fe12" then "active" end}"}
+              %a{:href => "/about/b773195a-9880-4773-88d4-50d36260fe12"} Rugby Union
+    %article
+      %div.container
+        %div.sixteen.columns
+          - if @title
+            %h1.title= @title
+          = partial("partial/cwork_big", :locals => {cwork: @cworks.first})
+          - @cworks[1..-1].each do |cwork|
+            = partial("partial/cwork_small", :locals => {cwork: cwork})

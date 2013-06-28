@@ -23,8 +23,9 @@ get '/' do
 end
 
 get '/new' do
-  @client = CoreClient.new ENV["MASHERY_KEY"]
-  @client.creative_works
+  client = CoreClient.new ENV["MASHERY_KEY"]
+  @cworks = client.creative_works
+  haml :index
 end
 
 get '/about/:guid' do
