@@ -6,6 +6,12 @@ require 'rest-client'
 
 require_relative 'lib/core_client'
 
+if ENV['PASSWORD']
+  use Rack::Auth::Basic, "Restricted Area" do |username, password|
+    username == 'admin' and password == ENV['PASSWORD']
+  end
+end
+
 configure do
   set :client, CoreClient.new(ENV["MASHERY_KEY"])
   if ENV["SERVER_ENV"] == "sandbox"
