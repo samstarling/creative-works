@@ -72,6 +72,12 @@ describe CreativeWork do
       @cw = CreativeWork.new json_fixture("creative_work/no_thumbnail.json")
       @cw.thumbnail.should == nil
     end
+    
+    it "handles missing about and mentions tags" do
+      @cw = CreativeWork.new json_fixture("creative_work/no_tags.json")
+      @cw.about.should == nil
+      @cw.mentions.should == nil
+    end
   end
   
   describe "parsing an invalid Creative Work" do

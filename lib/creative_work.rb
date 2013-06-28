@@ -69,8 +69,12 @@ class CreativeWork
   private
   
   def tag type
-    @json[type].map do |tag|
-      Tag.new tag['preferredLabel'], tag['@id']
+    if @json[type]
+      @json[type].map do |tag|
+        Tag.new tag['preferredLabel'], tag['@id']
+      end
+    else
+      nil
     end
   end
 end
