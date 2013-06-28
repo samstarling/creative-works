@@ -35,7 +35,7 @@ describe CreativeWork do
     end
     
     it "parses the web link" do
-      @cw.href.should == "http://www.bbc.co.uk/sport/0/winter-sports/23087674"
+      @cw.url.should == "http://www.bbc.co.uk/sport/0/winter-sports/23087674"
     end
   end
   
@@ -60,6 +60,10 @@ describe CreativeWork do
       football = Tag.new json_fixture("tag/examples/football.json")
       @cw.mentions.should include fleetwood
       @cw.mentions.should include football
+    end
+    
+    it "returns the non-mobile link if possible" do
+      @cw.url.should == "http://www.bbc.co.uk/sport/0/football/23088834"
     end
     
     it "returns the biggest image as the thumbnail" do

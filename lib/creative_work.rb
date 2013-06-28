@@ -24,8 +24,15 @@ class CreativeWork
     @json['description']
   end
   
-  def href
-    JSONHelper.normalize_array(@json['primaryContentOf']).first
+  def url
+    poten = JSONHelper.normalize_array(@json['primaryContentOf'])
+    non_mobile_urls = poten.select { |u| u.include?("mobile") == false }
+
+    if non_mobile_urls
+      non_mobile_urls.first
+    else
+      urls.first
+    end
   end
   
   def locator
