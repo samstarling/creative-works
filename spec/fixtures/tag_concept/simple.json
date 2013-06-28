@@ -1,0 +1,9 @@
+{
+   "@id": "http://www.bbc.co.uk/news/events/f92ccaf7-39da-4cbc-abff-2d0881894715#thing",
+   "@type": [
+       "http://www.bbc.co.uk/ontologies/news/MinorNewsEvent",
+       "TagConcept",
+       "Thing"
+   ],
+   "label": "Stoke v Liverpool"
+}

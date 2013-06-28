@@ -1,0 +1,7 @@
+{
+    "@id": "http://sws.geonames.org/3333203/",
+    "@type": [
+        "Thing",
+        "TagConcept"
+    ]
+}
