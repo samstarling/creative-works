@@ -15,8 +15,12 @@ class CoreClient
   def get_and_parse url
     response = @rest_client.get "#{@base_url}/#{url}"
     json = JSON.parse(response.body)
-    json['results'].map do |result|
-      CreativeWork.new result
+    if json['results']
+      json['results'].map do |result|
+        CreativeWork.new result
+      end
+    else
+      nil
     end
   end
 end

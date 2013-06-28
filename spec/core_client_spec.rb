@@ -29,5 +29,10 @@ describe CoreClient do
       creative_works = @core_client.creative_works
       creative_works.first.class.should == CreativeWork
     end
+    
+    it "returns nil when the response is empty" do
+      mock_response "{}"
+      @core_client.creative_works.should == nil
+    end
   end
 end
