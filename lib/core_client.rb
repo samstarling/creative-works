@@ -22,16 +22,29 @@ class CoreClient
   
   def tag_concepts params = { legacy: false }
     q_str = query_string params
-    get_creative_works "tag-concepts?#{q_str}&api_key=#{@api_key}"
+    get_tag_concepts "tag-concepts?#{q_str}&api_key=#{@api_key}"
   end
   
   private
+  
+  # TODO Repetition here - address this.
   
   def get_creative_works path
     json = safe_get_json path
     if json['results']
       json['results'].map do |result|
         CreativeWork.new result
+      end
+    else
+      nil
+    end
+  end
+  
+  def get_tag_concepts path
+    json = safe_get_json path
+    if json['results']
+      json['results'].map do |result|
+        TagConcept.new result
       end
     else
       nil

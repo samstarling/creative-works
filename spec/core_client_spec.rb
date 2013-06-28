@@ -19,9 +19,19 @@ describe CoreClient do
       mock_response fixture("core_client/tag_concepts/list.json")
     end
     
-    it "fetches a list of TagConcepts for a search query" do
+    it "fetches a list of Tag Concepts for a search query" do
       @rest_client.should_receive(:get).with("#{@base_url}/tag-concepts?search=Munst&legacy=true&api_key=foo")
       @core_client.tag_concepts({search: "Munst", legacy: true})
+    end
+    
+    it "produces the correct number of Tag Concepts" do
+      concepts = @core_client.tag_concepts({search: "Munst", legacy: true})
+      concepts.size.should == 10
+    end
+    
+    it "returns TagConcept objects" do
+      concepts = @core_client.tag_concepts({search: "Munst", legacy: true})
+      concepts.first.class.should == TagConcept
     end
   end
   

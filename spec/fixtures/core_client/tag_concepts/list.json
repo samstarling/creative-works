@@ -1,44 +1,155 @@
 {
     "results": [
         {
-            "@id": "http://www.bbc.co.uk/things/9f2b27b0-641f-4d9a-a400-b9db34e9cdea#id",
+            "@id": "http://sws.geonames.org/2636769/",
             "@type": [
-                "Resource",
-                "CompetitiveSportingOrganisation",
-                "SportTagConcept",
+                "http://www.bbc.co.uk/ontologies/news/Place",
+                "owl_Thing",
+                "core_Thing",
+                "Thing",
+                "@blank",
                 "TagConcept",
-                "http://xmlns.com/foaf/0.1/Organisation",
+                "Place",
+                "GeoTagConcept",
+                "SpatialThing",
+                "Resource",
+                "@blank",
+                "Feature",
+                "tagging_TagConcept"
+            ],
+            "canonicalName": "Stourbridge",
+            "label": "Stourbridge",
+            "lat": "52.45608",
+            "long": "-2.14317"
+        },
+        {
+            "@id": "http://sws.geonames.org/2636841/",
+            "@type": [
                 "owl_Thing",
                 "Thing",
-                "SportingOrganisation"
-            ],
-            "canonicalName": "Munster Rugby Union Football Club",
-            "label": [
-                "Munster",
-                "Munster Rugby Union Football Club"
-            ],
-            "name": "Munster",
-            "shortName": "Munster",
-            "document": [
-                "http://www.bbc.co.uk/sport/rugby-union/13629208",
-                "http://www.bbc.co.uk/sport/rugby-union/teams/munster",
-                "http://www.munsterrugby.ie/",
-                "http://www.munsterrugby.ie/RssLatestNews.xml"
+                "TagConcept",
+                "Resource"
             ]
+        },
+        {
+            "@id": "http://sws.geonames.org/3333204/",
+            "@type": [
+                "owl_Thing",
+                "Thing",
+                "TagConcept",
+                "SpatialThing",
+                "Resource"
+            ]
+        },
+        {
+            "@id": "http://sws.geonames.org/3333203/",
+            "@type": [
+                "owl_Thing",
+                "Thing",
+                "TagConcept",
+                "Resource"
+            ]
+        },
+        {
+            "@id": "http://sws.geonames.org/7293437/",
+            "@type": [
+                "owl_Thing",
+                "Thing",
+                "TagConcept",
+                "Resource"
+            ]
+        },
+        {
+            "@id": "http://www.bbc.co.uk/news/events/f92ccaf7-39da-4cbc-abff-2d0881894715#thing",
+            "@type": [
+                "http://www.bbc.co.uk/ontologies/news/MinorNewsEvent",
+                "http://www.bbc.co.uk/ontologies/news/NewsEventTagConcept",
+                "Resource",
+                "http://www.bbc.co.uk/ontologies/news/NewsEvent",
+                "http://purl.org/NET/c4dm/event.owl#Event",
+                "owl_Thing",
+                "TagConcept",
+                "Thing",
+                "http://www.bbc.co.uk/ontologies/news/MinorNewsEventTagConcept"
+            ],
+            "label": "Stoke v Liverpool"
+        },
+        {
+            "@id": "http://www.bbc.co.uk/news/events/1b81bbcb-bc34-4070-aa95-3c0afbc10b65#thing",
+            "@type": [
+                "Thing",
+                "http://www.bbc.co.uk/ontologies/news/MinorNewsEvent",
+                "Resource",
+                "http://purl.org/NET/c4dm/event.owl#Event",
+                "http://www.bbc.co.uk/ontologies/news/NewsEvent",
+                "owl_Thing",
+                "http://www.bbc.co.uk/ontologies/news/MinorNewsEventTagConcept",
+                "TagConcept",
+                "http://www.bbc.co.uk/ontologies/news/NewsEventTagConcept"
+            ],
+            "label": "Sunderland v Stoke"
+        },
+        {
+            "@id": "http://www.bbc.co.uk/news/events/87a71cc3-9f0b-4f31-a6a7-33774f748255#thing",
+            "@type": [
+                "http://www.bbc.co.uk/ontologies/news/NewsEventTagConcept",
+                "http://purl.org/NET/c4dm/event.owl#Event",
+                "Resource",
+                "owl_Thing",
+                "TagConcept",
+                "http://www.bbc.co.uk/ontologies/news/MinorNewsEventTagConcept",
+                "http://www.bbc.co.uk/ontologies/news/MinorNewsEvent",
+                "http://www.bbc.co.uk/ontologies/news/NewsEvent",
+                "Thing"
+            ],
+            "label": "Stoke v Tottenham"
+        },
+        {
+            "@id": "http://www.bbc.co.uk/news/events/c10a229c-66ed-42ce-b104-5d2ece7dab65#thing",
+            "@type": [
+                "http://www.bbc.co.uk/ontologies/news/MinorNewsEvent",
+                "Thing",
+                "Resource",
+                "http://www.bbc.co.uk/ontologies/news/MinorNewsEventTagConcept",
+                "http://www.bbc.co.uk/ontologies/news/NewsEventTagConcept",
+                "owl_Thing",
+                "TagConcept",
+                "http://purl.org/NET/c4dm/event.owl#Event",
+                "http://www.bbc.co.uk/ontologies/news/NewsEvent"
+            ],
+            "label": "Stoke v Man Utd"
+        },
+        {
+            "@id": "http://www.bbc.co.uk/news/events/8839815f-08c9-4a65-a9ea-c96c9099cc76#thing",
+            "@type": [
+                "TagConcept",
+                "Resource",
+                "http://www.bbc.co.uk/ontologies/news/MinorNewsEventTagConcept",
+                "http://www.bbc.co.uk/ontologies/news/NewsEventTagConcept",
+                "owl_Thing",
+                "http://purl.org/NET/c4dm/event.owl#Event",
+                "Thing",
+                "http://www.bbc.co.uk/ontologies/news/NewsEvent",
+                "http://www.bbc.co.uk/ontologies/news/MinorNewsEvent"
+            ],
+            "label": "Swansea v Stoke"
         }
     ],
     "@context": {
-        "CompetitiveSportingOrganisation": {
-            "@id": "http://www.bbc.co.uk/ontologies/sport/CompetitiveSportingOrganisation"
+        "Feature": {
+            "@id": "http://www.geonames.org/ontology#Feature"
+        },
+        "GeoTagConcept": {
+            "@id": "http://www.geonames.org/ontology#GeoTagConcept"
+        },
+        "Place": {
+            "@id": "http://www.bbc.co.uk/ontologies/coreconcepts/Place"
         },
         "Resource": {
             "@id": "http://www.w3.org/2000/01/rdf-schema#Resource"
         },
-        "SportTagConcept": {
-            "@id": "http://www.bbc.co.uk/ontologies/sport/SportTagConcept"
-        },
-        "SportingOrganisation": {
-            "@id": "http://www.bbc.co.uk/ontologies/sport/SportingOrganisation"
+        "SpatialThing": {
+            "@id": "http://www.w3.org/2003/01/geo/wgs84_pos#SpatialThing"
         },
         "TagConcept": {
             "@id": "http://www.bbc.co.uk/ontologies/tag/TagConcept"
@@ -49,25 +160,33 @@
         "canonicalName": {
             "@id": "http://www.bbc.co.uk/ontologies/domain/canonicalName"
         },
-        "document": {
-            "@id": "http://www.bbc.co.uk/ontologies/domain/document",
-            "@type": "@id"
+        "core_Thing": {
+            "@id": "http://www.bbc.co.uk/ontologies/coreconcepts/Thing"
+        },
+        "domain_Thing": {
+            "@id": "http://www.bbc.co.uk/ontologies/domain/Thing"
         },
         "label": {
             "@id": "http://www.w3.org/2000/01/rdf-schema#label"
         },
-        "name": {
-            "@id": "http://www.bbc.co.uk/ontologies/domain/name"
+        "lat": {
+            "@id": "http://www.w3.org/2003/01/geo/wgs84_pos#lat"
+        },
+        "long": {
+            "@id": "http://www.w3.org/2003/01/geo/wgs84_pos#long"
         },
         "owl_Thing": {
             "@id": "http://www.w3.org/2002/07/owl#Thing"
         },
-        "shortName": {
-            "@id": "http://www.bbc.co.uk/ontologies/domain/shortName"
+        "tag_TagConcept": {
+            "@id": "http://www.bbc.co.uk/ontologies/tag/TagConcept"
+        },
+        "tagging_TagConcept": {
+            "@id": "http://www.bbc.co.uk/ontologies/tagging/TagConcept"
         },
         "type": {
             "@id": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
-            "@type": "@vocab"
+            "@type": "@id"
         }
     }
 }
