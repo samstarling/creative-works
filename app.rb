@@ -3,7 +3,6 @@ require 'sinatra'
 require 'json'
 require 'sinatra/partial'
 
-require_relative 'lib/creative_work_client'
 require_relative 'lib/core_client'
 
 # NB: Castleford = 663de257-779e-4869-bd68-6c469a984469
