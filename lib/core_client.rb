@@ -14,11 +14,15 @@ class CoreClient
     @rest_client = rest_client
     @base_url = base_url
   end
-    
-  def creative_works params = { legacy: false }
-    param_array = params.map { |k, v| "#{k}=#{v}" }
-    param_string = param_array.join("&")
-    get_creative_works "creative-works?#{param_string}&api_key=#{@api_key}"
+  
+  def creative_works params = { legacy: true }
+    q_str = query_string params
+    get_creative_works "creative-works?#{q_str}&api_key=#{@api_key}"
+  end
+  
+  def tag_concepts params = { legacy: false }
+    q_str = query_string params
+    get_creative_works "tag-concepts?#{q_str}&api_key=#{@api_key}"
   end
   
   private
@@ -32,6 +36,11 @@ class CoreClient
     else
       nil
     end
+  end
+  
+  def query_string params
+    param_array = params.map { |k, v| "#{k}=#{v}" }
+    param_string = param_array.join("&")
   end
   
   def safe_get_json path

@@ -1,0 +1,73 @@
+{
+    "results": [
+        {
+            "@id": "http://www.bbc.co.uk/things/9f2b27b0-641f-4d9a-a400-b9db34e9cdea#id",
+            "@type": [
+                "Resource",
+                "CompetitiveSportingOrganisation",
+                "SportTagConcept",
+                "TagConcept",
+                "http://xmlns.com/foaf/0.1/Organisation",
+                "owl_Thing",
+                "Thing",
+                "SportingOrganisation"
+            ],
+            "canonicalName": "Munster Rugby Union Football Club",
+            "label": [
+                "Munster",
+                "Munster Rugby Union Football Club"
+            ],
+            "name": "Munster",
+            "shortName": "Munster",
+            "document": [
+                "http://www.bbc.co.uk/sport/rugby-union/13629208",
+                "http://www.bbc.co.uk/sport/rugby-union/teams/munster",
+                "http://www.munsterrugby.ie/",
+                "http://www.munsterrugby.ie/RssLatestNews.xml"
+            ]
+        }
+    ],
+    "@context": {
+        "CompetitiveSportingOrganisation": {
+            "@id": "http://www.bbc.co.uk/ontologies/sport/CompetitiveSportingOrganisation"
+        },
+        "Resource": {
+            "@id": "http://www.w3.org/2000/01/rdf-schema#Resource"
+        },
+        "SportTagConcept": {
+            "@id": "http://www.bbc.co.uk/ontologies/sport/SportTagConcept"
+        },
+        "SportingOrganisation": {
+            "@id": "http://www.bbc.co.uk/ontologies/sport/SportingOrganisation"
+        },
+        "TagConcept": {
+            "@id": "http://www.bbc.co.uk/ontologies/tag/TagConcept"
+        },
+        "Thing": {
+            "@id": "http://www.bbc.co.uk/ontologies/domain/Thing"
+        },
+        "canonicalName": {
+            "@id": "http://www.bbc.co.uk/ontologies/domain/canonicalName"
+        },
+        "document": {
+            "@id": "http://www.bbc.co.uk/ontologies/domain/document",
+            "@type": "@id"
+        },
+        "label": {
+            "@id": "http://www.w3.org/2000/01/rdf-schema#label"
+        },
+        "name": {
+            "@id": "http://www.bbc.co.uk/ontologies/domain/name"
+        },
+        "owl_Thing": {
+            "@id": "http://www.w3.org/2002/07/owl#Thing"
+        },
+        "shortName": {
+            "@id": "http://www.bbc.co.uk/ontologies/domain/shortName"
+        },
+        "type": {
+            "@id": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+            "@type": "@vocab"
+        }
+    }
+}

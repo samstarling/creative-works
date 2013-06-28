@@ -3,7 +3,6 @@ require_relative 'spec_helper'
 describe CoreClient do
   before :each do
     @rest_client = double("RestClient")
-    mock_response fixture("core_client/latest.json")
     @base_url = "http://foo"
     @core_client = CoreClient.new "foo", @rest_client, @base_url
   end
@@ -15,15 +14,30 @@ describe CoreClient do
     @rest_client.stub(:get) { response }
   end
   
+  describe "tag concepts" do
+    before :each do
+      mock_response fixture("core_client/tag_concepts/list.json")
+    end
+    
+    it "fetches a list of TagConcepts for a search query" do
+      @rest_client.should_receive(:get).with("#{@base_url}/tag-concepts?search=Munst&legacy=true&api_key=foo")
+      @core_client.tag_concepts({search: "Munst", legacy: true})
+    end
+  end
+  
   describe "creative_works" do
-    it "fetches the latest non-legacy Creative Works by default" do
-      @rest_client.should_receive(:get).with("#{@base_url}/creative-works?legacy=false&api_key=foo")
+    before :each do
+      mock_response fixture("core_client/creative_works/latest.json")
+    end
+    
+    it "fetches the latest legacy Creative Works by default" do
+      @rest_client.should_receive(:get).with("#{@base_url}/creative-works?legacy=true&api_key=foo")
       @core_client.creative_works
     end
     
-    it "fetches legacy Creative Works" do
-      @rest_client.should_receive(:get).with("#{@base_url}/creative-works?legacy=true&api_key=foo")
-      @core_client.creative_works({ legacy: true })
+    it "fetches non-legacy Creative Works" do
+      @rest_client.should_receive(:get).with("#{@base_url}/creative-works?legacy=false&api_key=foo")
+      @core_client.creative_works({ legacy: false })
     end
     
     it "fetches Creative Works about a GUID" do
