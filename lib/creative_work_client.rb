@@ -2,7 +2,7 @@ require 'rest_client'
 require 'json'
 require 'retriable'
 
-#RestClient.proxy = "http://www-cache.reith.bbc.co.uk:80"
+RestClient.proxy = "http://www-cache.reith.bbc.co.uk:80"
 
 MASHERY_KEY = ENV["MASHERY_KEY"]
 #MASHERY_BASE = "http://bbc.api.mashery.com/stage/ldp"
