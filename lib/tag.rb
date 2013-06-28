@@ -28,6 +28,13 @@ class Tag
   end
   
   def guid
+    regex = /([0-9a-fA-F]){8}-([0-9a-fA-F]){4}-([0-9a-fA-F]){4}-([0-9a-fA-F]){4}-([0-9a-fA-F]){12}/
+    matches = regex.match(uri)
+    if matches
+      matches[0]
+    else
+      nil
+    end
   end
   
   def is_bbc_thing?
