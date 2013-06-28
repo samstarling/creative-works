@@ -44,7 +44,15 @@ class CreativeWork
       thumbnails = @json['thumbnail'].select do |thumb|
         thumb['thumbnailType'] == "FixedSize464Thumbnail"
       end
-      thumbnails.first['@id'].gsub("#image", "")
+      # TODO Add a test to cover this
+      # TODO Factor out to separate class
+      if thumbnails.class == Array
+        thumbnails.first['@id'].gsub("#image", "")
+      elsif thumbnails.class == String
+        thumbnails
+      else
+        nil
+      end
     else
       nil
     end
