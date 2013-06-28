@@ -1,6 +1,7 @@
 require 'date'
 
 require_relative 'tag'
+require_relative 'json_helper'
 
 class CreativeWork
   def initialize json
@@ -44,15 +45,7 @@ class CreativeWork
       thumbnails = @json['thumbnail'].select do |thumb|
         thumb['thumbnailType'] == "FixedSize464Thumbnail"
       end
-      # TODO Add a test to cover this
-      # TODO Factor out to separate class
-      if thumbnails.class == Array
-        thumbnails.first['@id'].gsub("#image", "")
-      elsif thumbnails.class == String
-        thumbnails
-      else
-        nil
-      end
+      JSONHelper.normalise_array(thumbnails).first['@id'].gsub("#image", "")
     else
       nil
     end
@@ -70,15 +63,9 @@ class CreativeWork
   
   def tag type
     if @json[type]
-      # TODO Add test for this, as above
-      if @json[type].class == Array
-        @json[type].map do |tag|
-          Tag.new tag['preferredLabel'], tag['@id']
-        end
-      elsif @json[type].class == Hash
-        Tag.new @json[type]['preferredLabel'], @json[type]['@id']
-      else
-        nil
+      tags = JSONHelper.normalise_array(@json[type])
+      tags.map do |tag|
+        Tag.new tag['preferredLabel'], tag['@id']
       end
     else
       nil
