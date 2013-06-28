@@ -28,4 +28,11 @@ class CreativeWork
   def modified_date
     DateTime.parse(@json['dateModified'])
   end
+  
+  def thumbnail
+    thumbnails = @json['thumbnail'].select do |thumb|
+      thumb['thumbnailType'] == "FixedSize464Thumbnail"
+    end
+    thumbnails.first['@id'].gsub("#image", "")
+  end
 end

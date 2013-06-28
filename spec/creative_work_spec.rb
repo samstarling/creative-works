@@ -31,13 +31,17 @@ describe CreativeWork do
     end
   end
   
-  describe "parsing a more complicated Creative Work" do
+  describe "parsing a more complex Creative Work" do
     before :each do
       @cw = CreativeWork.new json_fixture("creative_work/complex.json")
     end
     
     it "parses multiple locators" do
       @cw.locator.should == ["urn:bbc:cps:asset:23087674", "urn:bbc:cps:asset:1111"]
+    end
+    
+    it "returns the biggest image as the thumbnail" do
+      @cw.thumbnail.should == "http://news.bbcimg.co.uk/media/images/68418000/jpg/_68418058_68417547.jpg"
     end
   end
   
