@@ -118,59 +118,59 @@ class CreativeWorkOld
   end
 end
 
-class Tag
-  def initialize json
-    @json = json
-  end
-  
-  def to_s
-    label
-  end
-  
-  def label
-    if @json['preferredLabel']
-      @json['preferredLabel']
-    else
-      if @json['label'].class == Array
-        @json['label'].first
-      else
-        if @json['label']
-          @json['label']
-        else
-          @json
-        end
-      end
-    end
-  end
-  
-  def uri
-    if @json['@id']
-      @json['@id']
-    else
-      nil
-    end
-  end
-  
-  def guid
-    if uri
-      match = uri.match(/(([0-9a-fA-F]){8}-([0-9a-fA-F]){4}-([0-9a-fA-F]){4}-([0-9a-fA-F]){4}-([0-9a-fA-F]){12})/)
-      if match
-        match[1]
-      else
-        nil
-      end
-    else
-      nil
-    end
-  end
-  
-  def href
-    if uri
-      #"/about/#{URI.escape(uri).gsub('/', '%2F').gsub(':', '%3A')}"
-      "/about/#{guid}"
-    end
-  end
-end
+#class Tag
+#  def initialize json
+#    @json = json
+#  end
+#  
+#  def to_s
+#    label
+#  end
+#  
+#  def label
+#    if @json['preferredLabel']
+#      @json['preferredLabel']
+#    else
+#      if @json['label'].class == Array
+#        @json['label'].first
+#      else
+#        if @json['label']
+#          @json['label']
+#        else
+#          @json
+#        end
+#      end
+#    end
+#  end
+#  
+#  def uri
+#    if @json['@id']
+#      @json['@id']
+#    else
+#      nil
+#    end
+#  end
+#  
+#  def guid
+#    if uri
+#      match = uri.match(/(([0-9a-fA-F]){8}-([0-9a-fA-F]){4}-([0-9a-fA-F]){4}-([0-9a-fA-F]){4}-([0-9a-fA-F]){12})/)
+#      if match
+#        match[1]
+#      else
+#        nil
+#      end
+#    else
+#      nil
+#    end
+#  end
+#  
+#  def href
+#    if uri
+#      #"/about/#{URI.escape(uri).gsub('/', '%2F').gsub(':', '%3A')}"
+#      "/about/#{guid}"
+#    end
+#  end
+#end
 
 class BBCRestClient
   def self.get url

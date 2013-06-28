@@ -10,6 +10,10 @@ class Tag
     @uri.start_with? "http://www.bbc.co.uk/things/"
   end
   
+  def to_s
+    @title
+  end
+  
   def == other
     @title == other.title
     @uri == other.uri

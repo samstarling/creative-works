@@ -70,8 +70,15 @@ class CreativeWork
   
   def tag type
     if @json[type]
-      @json[type].map do |tag|
-        Tag.new tag['preferredLabel'], tag['@id']
+      # TODO Add test for this, as above
+      if @json[type].class == Array
+        @json[type].map do |tag|
+          Tag.new tag['preferredLabel'], tag['@id']
+        end
+      elsif @json[type].class == Hash
+        Tag.new @json[type]['preferredLabel'], @json[type]['@id']
+      else
+        nil
       end
     else
       nil

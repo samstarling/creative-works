@@ -7,11 +7,6 @@
 %h5.date
   = cwork.created_date
 %p= cwork.description
-- begin
-  - if cwork.about
-    %div.taglist
-      - cwork.about.each do |about|
-        %a.about{:href => about.href}= about
-- rescue => e
-  %div.taglist
-    %div An error occurred processing tags.
+%div.taglist
+  %div= cwork.about
+  %div= cwork.mentions
