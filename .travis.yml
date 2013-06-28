@@ -1,4 +1,22 @@
+---
 language: ruby
 rvm:
-  - 1.9.3
+- 1.9.3
 script: bundle exec rspec
+env:
+  matrix:
+    secure: ! 'RAtpPtrRBb/OJJQv3AoW9Xmosg/q7ACSrSpL8Uuv1NlHUR55Ap7hopAdRz/B
+
+      UPOpiilKfYYc0Wdjx3ex8JkNn5gwhrx0ojJL+zJnQld+LlGGZTgOH7TwbZeU
+
+      EjukY2lMdhgM6LiAqAhO8IwcO6fdBkJgUJaGApICZbiyubsFtoY='
+after_success:
+  - wget -qO- https://toolbelt.heroku.com/install-ubuntu.sh | sh
+  - git remote add heroku git@heroku.com:ld-dashboard.git
+  - echo "Host heroku.com" >> ~/.ssh/config
+  - echo "   StrictHostKeyChecking no" >> ~/.ssh/config
+  - echo "   CheckHostIP no" >> ~/.ssh/config
+  - echo "   UserKnownHostsFile=/dev/null" >> ~/.ssh/config
+  - heroku keys:clear
+  - yes | heroku keys:add
+  - yes | git push heroku master

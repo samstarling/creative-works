@@ -15,8 +15,12 @@ class CoreClient
     @base_url = base_url
   end
     
-  def creative_works legacy = false
-    get_and_parse "creative-works?legacy=#{legacy}&api_key=#{@api_key}"
+  def creative_works legacy = false, about = nil
+    if about
+      get_and_parse "creative-works?legacy=#{legacy}&about=#{about}&api_key=#{@api_key}"
+    else
+      get_and_parse "creative-works?legacy=#{legacy}&api_key=#{@api_key}"
+    end
   end
   
   private

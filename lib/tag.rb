@@ -16,7 +16,7 @@ class Tag
   end
   
   def label
-    attribute_safe("shortLabel").first
+    attribute_safe("label").first
   end
   
   def preferred_label
