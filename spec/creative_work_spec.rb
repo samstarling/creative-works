@@ -7,39 +7,39 @@ describe CreativeWork do
     end
     
     it "parses the URI" do
-      @cw.uri.should == "http://www.bbc.co.uk/sport/0/winter-sports/23087674#asset"
+      @cw.uri.should == "http://www.bbc.co.uk/things/342759f7-46f3-4bef-99f4-62996731bb6f#id"
     end
     
     it "parses the title" do
-      @cw.title.should == "Winter Olympics: Bobsleigher Paula Walker in rehab on road to Sochi"
+      @cw.title.should == "Cesc Fabregas rules out move from Barcelona to England"
     end
     
     it "parses the short title" do
-      @cw.short_title.should == "Walker in rehab on road to Sochi 2014"
+      @cw.short_title.should == "Fabregas rules out leaving Barcelona"
     end
     
     it "parses the description" do
-      @cw.description.should == "Bobsleigher Paula Walker is hopeful of recovering from a knee injury to compete in the Sochi 2014 Games."
+      @cw.description.should == "Former Arsenal captain Cesc Fabregas dismisses speculation linking him with a move from Barcelona to an English club."
     end
     
-    it "parses the locator" do
-      @cw.locator.should == ["urn:bbc:cps:asset:23087674"]
+    it "parses the locators" do
+      @cw.locator.should == ["urn:asset:a02c1c41-1323-f140-a0ef-df32a0dc12b8", "urn:bbc:cps:asset:22886585"]
     end
     
     it "parses the created date" do
-      @cw.created_date.should == DateTime.parse("2013-06-21T15:09:11Z")
+      @cw.created_date.should == DateTime.parse("2013-10-02T12:30:22Z")
     end
     
     it "parses the modified date" do
-      @cw.modified_date.should == DateTime.parse("2013-06-27T15:09:11Z")
+      @cw.modified_date.should == DateTime.parse("2013-10-02T12:30:22Z")
     end
     
     it "gives a friendly modified date" do
-      @cw.friendly_modified_date.should == "15:09, 27 June 2013"
+      @cw.friendly_modified_date.should == "12:30, 2 October 2013"
     end
     
     it "parses the web link" do
-      @cw.url.should == "http://www.bbc.co.uk/sport/0/winter-sports/23087674"
+      @cw.url.should == "http://wwwpreview.stage.newsonline.tc.nca.bbc.co.uk/sport/0/football/22886585"
     end
   end
   
@@ -64,10 +64,6 @@ describe CreativeWork do
       football = Tag.new json_fixture("tag/examples/football.json")
       @cw.mentions.should include fleetwood
       @cw.mentions.should include football
-    end
-    
-    it "returns the non-mobile link if possible" do
-      @cw.url.should == "http://www.bbc.co.uk/sport/0/football/23088834"
     end
     
     it "returns the biggest image as the thumbnail" do

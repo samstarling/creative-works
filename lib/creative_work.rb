@@ -25,14 +25,9 @@ class CreativeWork
   end
   
   def url
-    poten = JSONHelper.normalize_array(@json['primaryContentOf'])
-    non_mobile_urls = poten.select { |u| u.include?("mobile") == false }
-
-    if non_mobile_urls
-      non_mobile_urls.first
-    else
-      urls.first
-    end
+    primary_content_of = JSONHelper.normalize_array(@json['primaryContentOf'])
+    webdoc = primary_content_of.select { |pco| pco['webDocumentType'] == 'HighWeb' }
+    webdoc.first["@id"]
   end
   
   def locator
@@ -48,7 +43,9 @@ class CreativeWork
   end
   
   def friendly_modified_date
-    modified_date.strftime("%H:%M, %e %B %Y")
+    time = modified_date.strftime("%H:%M")
+    date = modified_date.strftime("%e %B %Y")
+    "#{time}, #{date.strip}"
   end
   
   def thumbnail
