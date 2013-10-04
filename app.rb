@@ -21,21 +21,21 @@ end
 
 get '/' do
   @page = params[:page] || 1
-  @cworks = settings.client.creative_works({legacy: true, page: @page})
+  @cworks = settings.client.creative_works({page: @page})
   @page_title = "Creative Works"
   haml :index
 end
 
 get '/about/:guid' do
   @page = params[:page] || 1
-  @cworks = settings.client.creative_works({legacy: true, about: params[:guid], page: @page})
-  @title = settings.client.things({uri: params[:guid]})["name"]
+  @cworks = settings.client.creative_works({about: params[:guid], page: @page})
+  @title = settings.client.tag_concepts({uri: params[:guid]}).first
   @page_title = @title || "Detail"
   haml :index 
 end
 
 get '/search' do
-  @results = settings.client.tag_concepts({legacy: true, search: params[:q]})
+  @results = settings.client.tag_concepts({search: params[:q]})
   @page_title = "Search for '#{params[:q]}'"
   haml :search
 end

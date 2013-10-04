@@ -23,7 +23,7 @@ class BBCRestClient
 end
 
 class CoreClient
-  def initialize api_key, rest_client = BBCRestClient.new, base_url = "http://bbc.api.mashery.com/ldp"
+  def initialize api_key, rest_client = BBCRestClient.new, base_url = "http://bbc.api.mashery.com/stage/ldp"
     @api_key = api_key
     @rest_client = rest_client
     @base_url = base_url
@@ -77,6 +77,7 @@ class CoreClient
   
   def safe_get_json path
     url = "#{@base_url}/#{path}"
+    puts url
     response = @rest_client.get url
     
     if response.code != 200

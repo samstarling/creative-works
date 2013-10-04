@@ -1,11 +1,17 @@
 - if @title
   %h1.title= @title
-= partial("partial/cwork_big", :locals => {cwork: @cworks.first})
-- @cworks[1..-1].each do |cwork|
-  = partial("partial/cwork_small", :locals => {cwork: cwork})
+  
+- if @cworks == nil
+  %p
+    There are no creative works tagged with
+    = "'#{@title}'."
+- else
+  = partial("partial/cwork_big", :locals => {cwork: @cworks.first})
+  - @cworks[1..-1].each do |cwork|
+    = partial("partial/cwork_small", :locals => {cwork: cwork})
 
-%div.pagination
-  - if @page.to_i > 1
-    %a.button.prev{:href => "?page=#{@page.to_i - 1}"} &larr;
-  - if @cworks.size == 10
-    %a.button.next{:href => "?page=#{@page.to_i + 1}"} &rarr;
+  %div.pagination
+    - if @page.to_i > 1
+      %a.button.prev{:href => "?page=#{@page.to_i - 1}"} &larr;
+    - if @cworks.size == 10
+      %a.button.next{:href => "?page=#{@page.to_i + 1}"} &rarr;
