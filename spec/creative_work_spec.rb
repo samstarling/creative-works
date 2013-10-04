@@ -48,10 +48,6 @@ describe CreativeWork do
       @cw = CreativeWork.new json_fixture("creative_work/complex.json")
     end
     
-    it "parses multiple locators" do
-      @cw.locator.should == ["urn:bbc:cps:asset:23087674", "urn:bbc:cps:asset:1111"]
-    end
-    
     it "parses about tags" do
       league_two = Tag.new json_fixture("tag/examples/league_two.json")
       football = Tag.new json_fixture("tag/examples/football.json")
@@ -67,7 +63,7 @@ describe CreativeWork do
     end
     
     it "returns the biggest image as the thumbnail" do
-      @cw.thumbnail.should == "http://news.bbcimg.co.uk/media/images/68418000/jpg/_68418058_68417547.jpg"
+      @cw.thumbnail.should == "http://wwwpreview.stage.newsonline.tc.nca.bbc.co.uk/media/images/68146000/jpg/_68146859_68146858.jpg"
     end
   end
   
